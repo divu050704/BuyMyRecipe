@@ -25,15 +25,32 @@ export default defineBackground(() => {
     { urls: ["*://www.youtube.com/api/timedtext*"] }
   );
 
-  // Option 1: Return true and use sendResponse
   browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    if (msg.type === "START"){
-      analyseCaption(caption).then(captionAnalysis => {
-        sendResponse({analysis: captionAnalysis});
-      }).catch(err => {
-        sendResponse({error: err.message});
-      });
+    if (msg.type === "START") {
+      if (caption.trim().length === 0) {
+        sendResponse({analysis: {success: false, message: "Try Enabling Captions"}})
+      }
+      else {
+        analyseCaption(caption).then(captionAnalysis => {
+          sendResponse({ analysis: captionAnalysis });
+        }).catch(err => {
+          sendResponse({ error: err.message });
+        });
+      }
       return true; // CRITICAL: Indicates async response
+    }
+    if (msg.type === "INGREDIENTS") {
+      (async () => {
+        try {
+          const backendUrl = import.meta.env.VITE_BACKEND_URL;
+          const res = await fetch(`${backendUrl}/api/search-ingredient?ingredient=${msg.name}`);
+          const data = await res.json();
+          sendResponse(data);
+        } catch (err: any) {
+          sendResponse({ error: err.message });
+        }
+      })();
+      return true; // again: indicate async sendResponse
     }
   });
 
