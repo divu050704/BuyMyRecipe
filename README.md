@@ -134,3 +134,4 @@ The installation process can be achieved in three ways:
 ![Alternative ingredients suggested by the model, based on easy availability in Indian markets (can also suggest cheaper and healthier options)](./screenshots/5.png)
 *Alternative ingredients suggested by the model, based on easy availability in Indian markets (can also suggest cheaper and healthier options).*
 
+[![Watch the video](https://img.youtube.com/vi/_V8wtZmMlNQ/0.jpg)](https://www.youtube.com/watch?v=_V8wtZmMlNQ)
