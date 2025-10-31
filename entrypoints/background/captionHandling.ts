@@ -20,17 +20,5 @@ export function cleanCaptions(captionArray: CaptionElement[]): string {
     return string
 }
 
-export async function analyseCaption(caption:string){
-    const request = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/get-recipe-details`,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({captions: caption})
-    })
-    const response = await request.json()
-    return response
-}
-
 
 

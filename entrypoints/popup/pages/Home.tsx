@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Eye, EyeOff, ShoppingCart, AlertCircle } from 'lucide-react';
-import { HomeProps, RecipeData, Ingredient, Instructions } from '../types/Home';
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Eye, EyeOff, ShoppingCart, AlertCircle, Bookmark, BookMarked } from 'lucide-react';
+import { HomeProps } from '../types/Home';
 
 function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps) {
   const [expandedIngredients, setExpandedIngredients] = useState<Set<number>>(new Set());
   const [currentStep, setCurrentStep] = useState(0);
   const [showOverview, setShowOverview] = useState(false);
+  const [saved, setSaved] = useState(false)
+
+  async function saveRecipe() {
+    if (!saved) {
+      const request = await browser.runtime.sendMessage({ type: "SAVE", recipeData: recipeData })
+      setSaved(true)
+    }
+  }
+
+
 
   const toggleIngredient = (index: number) => {
     setExpandedIngredients(prev => {
@@ -41,8 +51,8 @@ function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps)
     <div className='w-96 h-[600px] bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col'>
       {/* Header */}
       <div className='bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-5 py-6 shrink-0 shadow-lg'>
-        <h1 className='text-lg font-bold mb-1'>Recipe Extractor</h1>
-        <p className='text-emerald-100 text-xs opacity-90'>Extract recipes from video transcripts</p>
+        <h1 className='text-lg font-bold mb-1'>BuyMyRecipe</h1>
+        <p className='text-emerald-100 text-xs opacity-90'>Extract recipes from youtube video, and order ingredients on the go</p>
       </div>
 
       {!recipeData ? (
@@ -83,11 +93,20 @@ function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps)
           </div>
         </div>
       ) : (
-        <div className='flex-1 overflow-y-auto'>
+        <div className='flex-1 overflow-y-auto bg-white'>
+
           {/* Instructions Carousel */}
           {recipeData.instructions && recipeData.instructions.length > 0 && (
             <div className='bg-white border-b border-slate-200 shadow-sm'>
+              <div className="flex justify-end">
+                {saved ? <button className="mx-4 my-2 cursor-pointer" onClick={saveRecipe}>
+                  <BookMarked />
+                </button>: <button className="mx-4 my-2 cursor-pointer" onClick={saveRecipe}>
+                  <Bookmark />
+                </button>}
+              </div>
               <div className='px-4 py-4'>
+
                 <div className='flex items-center justify-between mb-3'>
                   <h3 className='text-sm font-bold text-slate-800 flex items-center gap-2'>
                     <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -145,11 +164,10 @@ function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps)
                     <button
                       key={index}
                       onClick={() => setCurrentStep(index)}
-                      className={`h-1.5 rounded-full transition-all ${
-                        index === currentStep
-                          ? 'w-8 bg-emerald-600 shadow-sm'
-                          : 'w-1.5 bg-slate-300 hover:bg-slate-400'
-                      }`}
+                      className={`h-1.5 rounded-full transition-all ${index === currentStep
+                        ? 'w-8 bg-emerald-600 shadow-sm'
+                        : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+                        }`}
                     />
                   ))}
                 </div>

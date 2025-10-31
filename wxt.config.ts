@@ -7,9 +7,19 @@ export default defineConfig({
     name: "BuyMyRecipe",
     host_permissions: [
       "https://*.youtube.com/*",
+       "https://plugin.progardenindia.com/*"
     ],
     permissions: [
-    "webRequest"
-  ],
+    "webRequest",
+    "storage",
+    "tabs",
+    "activeTab"
+    ],
+    web_accessible_resources: [
+      {
+        resources: ["pages/index.html"],
+        matches: ["<all_urls>"],
+      },
+    ],
   }
 });

@@ -22,6 +22,13 @@ export default function App() {
 
   const handleGetRecipe = async () => {
     setLoading(true);
+    const request = await browser.runtime.sendMessage({ type: "READ" })
+    console.log(request)
+    if (request.available){
+      setRecipeData(request.data)
+      return 
+    }   
+  
     try {
       const data = await getRecipe();
       setRecipeData(data);
