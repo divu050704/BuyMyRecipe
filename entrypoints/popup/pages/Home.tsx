@@ -47,12 +47,36 @@ function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps)
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      const request = await browser.runtime.sendMessage({ type: "READ" })
+      if (request.available) {
+        setSaved(true)
+        return
+      }
+    })()
+  }, [])
+
   return (
     <div className='w-96 h-[600px] bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col'>
       {/* Header */}
-      <div className='bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-5 py-6 shrink-0 shadow-lg'>
-        <h1 className='text-lg font-bold mb-1'>BuyMyRecipe</h1>
-        <p className='text-emerald-100 text-xs opacity-90'>Extract recipes from youtube video, and order ingredients on the go</p>
+      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-6 py-5 shadow-md flex items-center justify-between rounded-b-lg">
+        <div>
+          <h1 className="text-xl font-semibold tracking-tight">BuyMyRecipe</h1>
+          <p className="text-emerald-100 text-sm opacity-90 mt-1">
+            Extract recipes from YouTube videos and order ingredients instantly
+          </p>
+        </div>
+        <button
+          onClick={() => {
+            browser.tabs.create({
+              url: `chrome-extension://${browser.runtime.id}/dashboard.html`
+            })
+          }}
+          className="bg-white/10 hover:bg-white/20 transition-all px-4 py-2 rounded-lg text-sm font-medium text-white backdrop-blur-sm"
+        >
+          My Cookbook
+        </button>
       </div>
 
       {!recipeData ? (
@@ -101,7 +125,7 @@ function Home({ handleingredient, recipeData, loading, onGetRecipe }: HomeProps)
               <div className="flex justify-end">
                 {saved ? <button className="mx-4 my-2 cursor-pointer" onClick={saveRecipe}>
                   <BookMarked />
-                </button>: <button className="mx-4 my-2 cursor-pointer" onClick={saveRecipe}>
+                </button> : <button className="mx-4 my-2 cursor-pointer" onClick={saveRecipe}>
                   <Bookmark />
                 </button>}
               </div>

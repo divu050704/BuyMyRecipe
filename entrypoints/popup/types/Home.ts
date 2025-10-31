@@ -22,8 +22,7 @@ export interface RecipeData {
   summary: string;
   requiredIngredients: Ingredient[];
   instructions: Instructions[],
-  message: string,
-  recipeName: string
+  message: string
 
 }
 

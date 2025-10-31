@@ -1,4 +1,3 @@
-import { Chrome } from "lucide-react";
 import { fetchCaptions, cleanCaptions } from "./captionHandling";
 import geminiRecipe from "./geminiRecipe";
 
