@@ -1,4 +1,23 @@
+<div align="center">
+
 # **BuyMyRecipe Chrome Extension**
+
+<img src="./screenshots/Untitled design (2).png" alt="BuyMyRecipe Banner" />
+
+[![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-MV3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions)
+[![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![WXT](https://img.shields.io/badge/WXT-18181B?style=for-the-badge&logo=wxt&logoColor=white)](https://wxt.dev/)
+
+</div>
+
+---
+
+## **Introduction**
+
+**BuyMyRecipe** is an AI-powered browser extension that transforms how users extract, organize, and shop for recipes directly from YouTube video content. By leveraging Firebase AI Logic's Hybrid AI capabilities, BuyMyRecipe analyzes YouTube cooking videos to extract structured recipe overviews, step-by-step instructions, and exact ingredient lists. Designed with quick-commerce integration for Indian households, it allows users to instantly search for required ingredients on platforms like Blinkit and Zepto, while offering smart substitute suggestions suited for local markets.
 
 This Chrome extension is built using the **Hybrid AI** feature offered by **Firebase AI Logic**.
 It fetches details such as the **overview**, **instructions**, and **ingredients** from a YouTube video.
@@ -6,6 +25,16 @@ It fetches details such as the **overview**, **instructions**, and **ingredients
 It also offers a feature for the **Indian audience** to find the best suitable ingredients available on **Blinkit** and **Zepto**, relevant to the recipe.
 
 Users can **save recipes** for future reference and access them anytime by opening **“My Cookbook.”**
+
+---
+
+## **Features**
+
+* **🤖 AI-Powered Recipe Extraction**: Automatically extracts overview summaries, step-by-step cooking instructions, and comprehensive ingredient lists directly from YouTube recipe videos using Firebase AI Logic (Hybrid AI).
+* **🛒 Quick-Commerce Integration (Blinkit & Zepto)**: Seamlessly search and compare extracted ingredients on popular Indian quick-commerce delivery platforms like Blinkit and Zepto for instant ordering.
+* **💡 Smart Ingredient Substitutes**: Recommends healthier, budget-friendly, and locally available Indian market alternatives for hard-to-find ingredients.
+* **📖 Digital Cookbook ("My Cookbook")**: Save your favorite extracted recipes locally and access them anytime with full details, instructions, and ingredients.
+* **⚡ Modern Tech Stack & UI**: Built with WXT Framework, React 19, TypeScript, and Tailwind CSS for a fast, responsive, and seamless extension user experience.
 
 ---
 
